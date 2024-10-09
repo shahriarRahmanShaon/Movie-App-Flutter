@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_getx_template/app/core/base/base_widget_mixin.dart';
-import 'package:flutter_getx_template/app/core/widget/asset_image_view.dart';
+import 'package:movie_base/app/core/base/base_widget_mixin.dart';
+import 'package:movie_base/app/core/widget/asset_image_view.dart';
 import 'package:get/get.dart';
 
 import '/app/core/values/app_colors.dart';

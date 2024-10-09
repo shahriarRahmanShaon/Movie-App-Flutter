@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_getx_template/app/core/values/app_colors.dart';
-import 'package:flutter_getx_template/app/core/values/app_values.dart';
+import 'package:movie_base/app/core/values/app_colors.dart';
+import 'package:movie_base/app/core/values/app_values.dart';
 
 class Ripple extends StatelessWidget {
   final Function()? onTap;

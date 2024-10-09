@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_getx_template/flavors/environment.dart';
+import 'package:movie_base/flavors/environment.dart';
 
 import '/app/network/pretty_dio_logger.dart';
 import '/app/network/request_headers.dart';
