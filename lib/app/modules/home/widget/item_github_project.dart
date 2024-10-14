@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie_base/app/core/widget/ripple.dart';
 import 'package:get/get.dart';
-
 import '/app/core/base/base_widget_mixin.dart';
 import '/app/core/values/app_colors.dart';
 import '/app/core/values/app_values.dart';

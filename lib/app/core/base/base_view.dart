@@ -11,8 +11,7 @@ import '/app/core/values/app_colors.dart';
 import '/app/core/widget/loading.dart';
 import '/flavors/build_config.dart';
 
-abstract class BaseView<Controller extends BaseController>
-    extends GetView<Controller> {
+abstract class BaseView<Controller extends BaseController> extends GetView<Controller> {
   final GlobalKey<ScaffoldState> globalKey = GlobalKey<ScaffoldState>();
 
   AppLocalizations get appLocalization => AppLocalizations.of(Get.context!)!;
@@ -20,7 +19,6 @@ abstract class BaseView<Controller extends BaseController>
   final Logger logger = BuildConfig.instance.config.logger;
 
   Widget body(BuildContext context);
-
   PreferredSizeWidget? appBar(BuildContext context);
 
   @override
