@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:movie_base/app/modules/search/views/search_view.dart';
 
 import '/app/core/base/base_view.dart';
 import '/app/modules/favorite/views/favorite_view.dart';
@@ -34,6 +35,7 @@ class MainView extends BaseView<MainController> {
   final HomeView homeView = HomeView();
   FavoriteView? favoriteView;
   SettingsView? settingsView;
+  SearchView? searchView;
 
   Widget getPageOnSelectedMenu(MenuCode menuCode) {
     switch (menuCode) {
@@ -45,6 +47,9 @@ class MainView extends BaseView<MainController> {
       case MenuCode.SETTINGS:
         settingsView ??= SettingsView();
         return settingsView!;
+      case MenuCode.SEARCH:
+        searchView ??= SearchView();
+        return searchView!;
       default:
         return OtherView(
           viewParam: describeEnum(menuCode),
