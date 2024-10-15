@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import '../modules/search/bindings/search_binding.dart';
+import '../modules/search/views/search_view.dart';
 import '/app/modules/favorite/bindings/favorite_binding.dart';
 import '/app/modules/favorite/views/favorite_view.dart';
 import '/app/modules/home/bindings/home_binding.dart';
@@ -50,6 +52,11 @@ class AppPages {
       name: _Paths.PROJECT_DETAILS,
       page: () => ProjectDetailsView(),
       binding: ProjectDetailsBinding(),
+    ),
+    GetPage(
+      name: _Paths.SEARCH,
+      page: () => const SearchView(),
+      binding: SearchBinding(),
     ),
   ];
 }
