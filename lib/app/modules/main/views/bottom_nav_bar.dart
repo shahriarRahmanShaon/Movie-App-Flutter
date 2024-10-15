@@ -62,11 +62,11 @@ class BottomNavBar extends StatelessWidget with BaseWidgetMixin {
     bool isSelected,
   ) {
     return BottomNavigationBarItem(
-      icon: AssetImageView(
-        fileName: navItem.iconSvgName,
-        height: AppValues.iconDefaultSize,
-        width: AppValues.iconDefaultSize,
+      icon: Icon(
+        navItem.iconName,
+        size: AppValues.iconDefaultSize,
         color: isSelected ? selectedItemColor : unselectedItemColor,
+
       ),
       label: navItem.navTitle,
       tooltip: navItem.navTitle,
