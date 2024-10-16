@@ -1,21 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:movie_base/app/core/base/base_view.dart';
+import '/app/modules/search/controllers/search_controller.dart' as searchController;
 
-class SearchView extends GetView<SearchController> {
-  const SearchView({super.key});
+class SearchView extends BaseView<searchController.SearchController> {
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('SearchView'),
-        centerTitle: true,
-      ),
-      body: const Center(
-        child: Text(
-          'SearchView is working',
-          style: TextStyle(fontSize: 20),
-        ),
-      ),
-    );
+  PreferredSizeWidget? appBar(BuildContext context) {
+    return null;
+  }
+
+  @override
+  Widget body(BuildContext context) {
+    return Text('hi');
   }
 }

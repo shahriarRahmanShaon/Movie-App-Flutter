@@ -1,12 +1,11 @@
 import 'package:get/get.dart';
-
-import '../controllers/search_controller.dart';
+import '/app/modules/search/controllers/search_controller.dart' as searchController;
 
 class SearchBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<SearchController>(
-      () => SearchController(),
+    Get.lazyPut<searchController.SearchController>(
+      () => searchController.SearchController(),
     );
   }
 }
