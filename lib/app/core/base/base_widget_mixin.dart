@@ -8,6 +8,7 @@ import '/flavors/build_config.dart';
 mixin BaseWidgetMixin on StatelessWidget {
   AppLocalizations get appLocalization => AppLocalizations.of(Get.context!)!;
   final Logger logger = BuildConfig.instance.config.logger;
+  Widget body(BuildContext context);
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +16,4 @@ mixin BaseWidgetMixin on StatelessWidget {
       child: body(context),
     );
   }
-
-  Widget body(BuildContext context);
 }
