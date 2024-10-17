@@ -12,11 +12,16 @@ class MovieHeader extends StatelessWidget with BaseWidgetMixin {
     final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
 
-    return Stack(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _buildMovieImage(width, height),
-        _buildRatingBox(),
-        _buildMovieDetailsOverlay(width, height),
+        Stack(
+          children: [
+            _buildMovieImage(width, height),
+            _buildRatingBox(),
+            _buildMovieDetailsOverlay(width, height),
+          ],
+        ),
       ],
     );
   }
@@ -25,9 +30,16 @@ class MovieHeader extends StatelessWidget with BaseWidgetMixin {
     return Container(
       width: width,
       height: height / 4,
-      child: Image.network(
-        'https://yts.mx/assets/images/movies/fast_forward_1985/large-cover.jpg',
-        fit: BoxFit.fill,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20)
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(20),
+        child: Image.network(
+          'https://yts.mx/assets/images/movies/good_one_2024/large-cover.jpg',
+          fit: BoxFit.fill,
+        
+        ),
       ),
     );
   }
@@ -64,9 +76,12 @@ class MovieHeader extends StatelessWidget with BaseWidgetMixin {
     return Positioned(
       bottom: 0,
       child: Container(
-        width: width,
+        decoration: BoxDecoration(
+          color: Colors.black.withOpacity(0.3),
+          borderRadius: BorderRadius.circular(20)
+        ),
+        width: width-32,
         height: height / 10,
-        color: Colors.black.withOpacity(0.3),
         padding: const EdgeInsets.all(AppValues.padding),
         child: const Column(
           crossAxisAlignment: CrossAxisAlignment.start,
