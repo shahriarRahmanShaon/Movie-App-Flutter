@@ -18,31 +18,51 @@ class HomeView extends BaseView<HomeController> {
   Widget body(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(AppValues.padding),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text('Welcome Back', style: primaryColorSubtitleStyle),
-          const Text('Shahriar Rahman', style: centerTextStyle,),
-          const SizedBox(height: 20,),
-          MovieHeader(),
-          const SizedBox(height: 20,),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 8.0),
-            child: const Text('Top Movie Picks', style: centerTextStyle,),
-          ),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-             children: [
-               MovieGridView(),
-               const SizedBox(width: 15,),
-               MovieGridView(),
-               const SizedBox(width: 15,),
-               MovieGridView(),
-             ],
+      child: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text('Welcome Back', style: primaryColorSubtitleStyle),
+            const Text('Shahriar Rahman', style: centerTextStyle,),
+            const SizedBox(height: 20,),
+            MovieHeader(),
+            const SizedBox(height: 20,),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 8.0),
+              child: const Text('Top Movie Picks', style: centerTextStyle,),
             ),
-          )
-        ],
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+               children: [
+                 MovieGridView(),
+                 const SizedBox(width: 15,),
+                 MovieGridView(),
+                 const SizedBox(width: 15,),
+                 MovieGridView(),
+               ],
+              ),
+            ),
+            const SizedBox(height: 20,),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 8.0),
+              child: const Text('Upcoming Movies', style: centerTextStyle,),
+            ),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  MovieGridView(),
+                  const SizedBox(width: 15,),
+                  MovieGridView(),
+                  const SizedBox(width: 15,),
+                  MovieGridView(),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
