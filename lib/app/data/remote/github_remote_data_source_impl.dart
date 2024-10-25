@@ -8,11 +8,41 @@ import '/app/network/dio_provider.dart';
 
 class GithubRemoteDataSourceImpl extends BaseRemoteSource
     implements GithubRemoteDataSource {
+  // @override
+  // Future<GithubProjectSearchResponse> searchGithubProject() {
+  //   var endpoint = "${DioProvider.baseUrl}list_movies.json?sort_by=popular&order_by=desc";
+  //   var dioCall = dioClient.get(endpoint);
+  //
+  //   try {
+  //     return callApiWithErrorParser(dioCall)
+  //         .then((response) => _parseGithubProjectSearchResponse(response));
+  //   } catch (e) {
+  //     rethrow;
+  //   }
+  // }
+
+  // @override
+  // Future<Item> getGithubProjectDetails(String userName, String repositoryName) {
+  //   var endpoint = "${DioProvider.baseUrl}/repos/$userName/$repositoryName";
+  //   var dioCall = dioClient.get(endpoint);
+  //
+  //   try {
+  //     return callApiWithErrorParser(dioCall)
+  //         .then((response) => _parseGithubProjectResponse(response));
+  //   } catch (e) {
+  //     rethrow;
+  //   }
+  // }
+
+  GithubProjectSearchResponse _parseGithubProjectSearchResponse(
+      Response<dynamic> response) {
+    return GithubProjectSearchResponse.fromJson(response.data);
+  }
+
   @override
-  Future<GithubProjectSearchResponse> searchGithubProject(
-      GithubSearchQueryParam queryParam) {
-    var endpoint = "${DioProvider.baseUrl}/search/repositories";
-    var dioCall = dioClient.get(endpoint, queryParameters: queryParam.toJson());
+  Future<GithubProjectSearchResponse> getMovies() {
+    var endpoint = "${DioProvider.baseUrl}list_movies.json?sort_by=popular&order_by=desc";
+    var dioCall = dioClient.get(endpoint);
 
     try {
       return callApiWithErrorParser(dioCall)
@@ -22,25 +52,8 @@ class GithubRemoteDataSourceImpl extends BaseRemoteSource
     }
   }
 
-  @override
-  Future<Item> getGithubProjectDetails(String userName, String repositoryName) {
-    var endpoint = "${DioProvider.baseUrl}/repos/$userName/$repositoryName";
-    var dioCall = dioClient.get(endpoint);
+  // Item _parseGithubProjectResponse(Response<dynamic> response) {
+  //   return Item.fromJson(response.data);
+  // }
 
-    try {
-      return callApiWithErrorParser(dioCall)
-          .then((response) => _parseGithubProjectResponse(response));
-    } catch (e) {
-      rethrow;
-    }
-  }
-
-  GithubProjectSearchResponse _parseGithubProjectSearchResponse(
-      Response<dynamic> response) {
-    return GithubProjectSearchResponse.fromJson(response.data);
-  }
-
-  Item _parseGithubProjectResponse(Response<dynamic> response) {
-    return Item.fromJson(response.data);
-  }
 }

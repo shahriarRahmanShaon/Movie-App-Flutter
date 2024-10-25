@@ -9,6 +9,10 @@ import '/app/modules/home/controllers/home_controller.dart';
 
 class HomeView extends BaseView<HomeController> {
 
+  HomeView() {
+    controller.getGithubGetxProjectList();
+  }
+
   @override
   PreferredSizeWidget? appBar(BuildContext context) {
     return null;
