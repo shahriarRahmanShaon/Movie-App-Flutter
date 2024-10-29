@@ -1,12 +1,12 @@
-class GithubProjectSearchResponse {
+class AllMoviesResponse {
   String? status;
   String? statusMessage;
   Data? data;
 
-  GithubProjectSearchResponse(
+  AllMoviesResponse(
       {this.status, this.statusMessage, this.data});
 
-  GithubProjectSearchResponse.fromJson(Map<String, dynamic> json) {
+  AllMoviesResponse.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     statusMessage = json['status_message'];
     data = json['data'] != null ? new Data.fromJson(json['data']) : null;

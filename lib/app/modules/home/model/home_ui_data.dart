@@ -1,4 +1,4 @@
-class GithubProjectUiData {
+class AllMovieUiData {
   int id;
   String url;
   String imdbCode;
@@ -25,7 +25,7 @@ class GithubProjectUiData {
   // String dateUploaded;
   // int dateUploadedUnix;
 
-  GithubProjectUiData({
+  AllMovieUiData({
     this.id = 0,
     this.url = "",
     this.imdbCode = "",
