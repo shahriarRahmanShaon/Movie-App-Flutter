@@ -54,3 +54,9 @@ class AllMovieUiData {
   });
 }
 
+class TopMovieUiData {
+  String originalTitle;
+
+  TopMovieUiData({this.originalTitle = "Null"});
+}
+

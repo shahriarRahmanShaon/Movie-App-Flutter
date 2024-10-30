@@ -8,7 +8,7 @@ import '/flavors/environment.dart';
 void main() {
   EnvConfig prodConfig = EnvConfig(
     appName: "Movie World Prod",
-    baseUrl: "api.themoviedb.org/3/movie/",
+    baseUrl: "https://api.themoviedb.org/3/movie/",
     shouldCollectCrashLog: true,
   );
 

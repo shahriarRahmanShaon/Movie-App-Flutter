@@ -96,4 +96,6 @@ abstract class AppValues {
   static const int defaultThrottleTimeInMilliSeconds = 500;
 
   static const double height_16 = 16;
+
+  static const appToken = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlMTViNWYyY2VmMDQ3MTk3MWZiMzlkMWE0MzMyZjE5OSIsIm5iZiI6MTcyOTg1MTU0Mi43NDI5MjksInN1YiI6IjYyYTM2ODlhN2Y2YzhkMTQ2YzUxODM4NSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.dBXb5ghWblP6HZXc6_sdVVzoxmtNhyuADv0krf8YTh8';
 }

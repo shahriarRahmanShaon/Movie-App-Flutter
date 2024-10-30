@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
+import 'package:get/get.dart';
 import 'package:movie_base/app/core/values/app_values.dart';
 import 'package:movie_base/app/core/values/text_styles.dart';
 import 'package:movie_base/app/modules/home/widget/movie_grid_view.dart';
@@ -10,7 +10,7 @@ import '/app/modules/home/controllers/home_controller.dart';
 class HomeView extends BaseView<HomeController> {
 
   HomeView() {
-    controller.getAllMovieList();
+    controller.getTopPickMovieList();
   }
 
   @override
@@ -20,7 +20,7 @@ class HomeView extends BaseView<HomeController> {
 
   @override
   Widget body(BuildContext context) {
-    return Padding(
+    return Obx(() => Padding(
       padding: const EdgeInsets.all(AppValues.padding),
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
@@ -28,46 +28,45 @@ class HomeView extends BaseView<HomeController> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text('Welcome Back', style: primaryColorSubtitleStyle),
-            const Text('Shahriar Rahman', style: centerTextStyle,),
-            const SizedBox(height: 20,),
+            Text(controller.topMovieList[0].originalTitle, style: centerTextStyle),
+            const SizedBox(height: 20),
             MovieHeader(),
-            const SizedBox(height: 20,),
+            const SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.only(bottom: 8.0),
-              child: const Text('Top Movie Picks', style: centerTextStyle,),
+              child: const Text('Top Movie Picks', style: centerTextStyle),
             ),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
-               children: [
-                 MovieGridView(),
-                 const SizedBox(width: 15,),
-                 MovieGridView(),
-                 const SizedBox(width: 15,),
-                 MovieGridView(),
-               ],
+                children: [
+                  for (var movie in controller.topMovieList.take(10))...[
+                    MovieGridView(),
+                  SizedBox(width: 20),
+                  ]
+                ],
               ),
             ),
-            const SizedBox(height: 20,),
+            const SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.only(bottom: 8.0),
-              child: const Text('Upcoming Movies', style: centerTextStyle,),
+              child: const Text('Upcoming Movies', style: centerTextStyle),
             ),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
                   MovieGridView(),
-                  const SizedBox(width: 15,),
+                  const SizedBox(width: 15),
                   MovieGridView(),
-                  const SizedBox(width: 15,),
+                  const SizedBox(width: 15),
                   MovieGridView(),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),
-    );
+    ));
   }
 }
