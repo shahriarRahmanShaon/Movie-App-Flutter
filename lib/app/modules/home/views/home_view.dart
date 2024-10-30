@@ -28,27 +28,27 @@ class HomeView extends BaseView<HomeController> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text('Welcome Back', style: primaryColorSubtitleStyle),
-            Text(controller.topMovieList[0].originalTitle, style: centerTextStyle),
+            const Text('Shahriar Rahman Shaon', style: centerTextStyle),
             const SizedBox(height: 20),
             MovieHeader(),
             const SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 8.0),
-              child: const Text('Top Movie Picks', style: centerTextStyle),
+            const Padding(
+              padding: EdgeInsets.only(bottom: 8.0),
+              child: Text('Top Movie Picks', style: centerTextStyle),
             ),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
                   for (var movie in controller.topMovieList.take(10))...[
-                    MovieGridView(),
-                  SizedBox(width: 20),
+                    MovieGridView(movieUiData: movie,key: key),
+                    const SizedBox(width: 20),
                   ]
                 ],
               ),
             ),
             const SizedBox(height: 20),
-            Padding(
+            const Padding(
               padding: const EdgeInsets.only(bottom: 8.0),
               child: const Text('Upcoming Movies', style: centerTextStyle),
             ),
@@ -56,11 +56,12 @@ class HomeView extends BaseView<HomeController> {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  MovieGridView(),
-                  const SizedBox(width: 15),
-                  MovieGridView(),
-                  const SizedBox(width: 15),
-                  MovieGridView(),
+                  Text("fefefe")
+                  // MovieGridView(),
+                  // const SizedBox(width: 15),
+                  // MovieGridView(),
+                  // const SizedBox(width: 15),
+                  // MovieGridView(movieUiData: m,),
                 ],
               ),
             ),

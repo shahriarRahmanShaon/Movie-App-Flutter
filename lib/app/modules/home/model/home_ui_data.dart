@@ -55,8 +55,27 @@ class AllMovieUiData {
 }
 
 class TopMovieUiData {
+  int id;
   String originalTitle;
+  String posterPath;
+  String releaseDate;
+  double popularity;
+  String overview;
+  String backdropPath;
+  String originalLanguage;
+  String title;
 
-  TopMovieUiData({this.originalTitle = "Null"});
+  TopMovieUiData({
+    this.id = 0,
+    this.originalTitle = "Null",
+    this.posterPath = "NUll",
+    this.releaseDate = "Null",
+    this.popularity = 5.0,
+    this.overview = "Null",
+    this.backdropPath = "Null",
+    this.originalLanguage = "Null",
+    this.title = "Null",
+  });
 }
+
 

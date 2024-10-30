@@ -31,8 +31,16 @@ class HomeController extends BaseController {
 
   void _handleTopMovieListResponseSuccess(TopPickMovie response) {
     List<TopMovieUiData>? movieList = response.results?.map((e) => TopMovieUiData(
-        originalTitle:  e.originalTitle != null ? e.originalTitle! : "Null")
-    ).toList();
+      id: e.id ?? 0,
+      originalTitle: e.originalTitle ?? "Null",
+      posterPath: e.posterPath ?? "Null",
+      releaseDate: e.releaseDate ?? "Unknown",
+      popularity: e.popularity ?? 0.0,
+      overview: e.overview ?? "No overview available",
+      backdropPath: e.backdropPath ?? "Null",
+      originalLanguage: e.originalLanguage ?? "Unknown",
+      title: e.title ?? "Untitled",
+    )).toList();
     var list = [...movieList!];
     _topMovieListController(list);
 

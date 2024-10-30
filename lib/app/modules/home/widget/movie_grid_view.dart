@@ -1,17 +1,16 @@
 import 'package:movie_base/app/core/base/base_widget_mixin.dart';
 import 'package:flutter/material.dart';
+import 'package:movie_base/app/modules/home/model/home_ui_data.dart';
 
 class MovieGridView extends StatelessWidget with BaseWidgetMixin {
-
-  MovieGridView({
-    Key? key,
-  }) : super(key: key);
+  TopMovieUiData movieUiData;
+  MovieGridView({Key? key, required this.movieUiData}) : super(key: key);
 
   @override
   Widget body(BuildContext context) {
     return Stack(
       children: [
-        _buildMovieImage(130, 200, titleOnBottom: 'SpiderMan Returns And Dies')
+        _buildMovieImage(130, 200, titleOnBottom: movieUiData.originalTitle)
       ],
     );
   }
@@ -28,7 +27,7 @@ class MovieGridView extends StatelessWidget with BaseWidgetMixin {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(14),
             child: Image.network(
-              'https://yts.mx/assets/images/movies/good_one_2024/large-cover.jpg',
+              _getUrlFromData(movieUiData.posterPath),
               fit: BoxFit.fitWidth,
             ),
           ),
@@ -40,13 +39,13 @@ class MovieGridView extends StatelessWidget with BaseWidgetMixin {
               titleOnBottom,
               overflow: TextOverflow.ellipsis,
               maxLines: 1,
-              style: TextStyle(fontSize: 14),
+              style: const TextStyle(fontSize: 14),
             ),
           ),
           SizedBox(
             width: width,
             child: Text(
-              '2022-2023, 2Hr',
+              movieUiData.releaseDate,
               overflow: TextOverflow.ellipsis,
               maxLines: 1,
               style: TextStyle(fontSize: 12, color: Colors.grey),
@@ -57,4 +56,7 @@ class MovieGridView extends StatelessWidget with BaseWidgetMixin {
     );
   }
 
+  String _getUrlFromData(posterPath) {
+    return "https://image.tmdb.org/t/p/w500${posterPath}";
+  }
 }
