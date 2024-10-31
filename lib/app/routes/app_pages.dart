@@ -10,7 +10,7 @@ import '/app/modules/main/bindings/main_binding.dart';
 import '/app/modules/main/views/main_view.dart';
 import '/app/modules/other/bindings/other_binding.dart';
 import '/app/modules/other/views/other_view.dart';
-import '/app/modules/project_details/bindings/project_details_binding.dart';
+import '/app/modules/project_details/bindings/movie_details_binding.dart';
 import '/app/modules/project_details/views/project_details_view.dart';
 import '/app/modules/settings/bindings/settings_binding.dart';
 import '/app/modules/settings/views/settings_view.dart';

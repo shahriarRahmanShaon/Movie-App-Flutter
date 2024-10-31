@@ -1,8 +1,9 @@
 import 'package:dio/dio.dart';
+import 'package:movie_base/app/data/model/movie_details_response.dart';
 import 'package:movie_base/app/data/model/top_rated_movie_response.dart';
 import 'package:movie_base/app/data/model/upcoming_movie_response.dart';
 import '/app/core/base/base_remote_source.dart';
-import '/app/core/model/github_search_query_param.dart';
+import '/app/core/model/movie_details_query_param.dart';
 import '/app/data/model/all_movie_response.dart';
 import '/app/data/remote/moviehub_remote_data_source.dart';
 import '/app/network/dio_provider.dart';
@@ -21,6 +22,10 @@ class GithubRemoteDataSourceImpl extends BaseRemoteSource
 
   UpcomingMovie _parseUpcomingMoviesResponse(Response<dynamic> response) {
     return UpcomingMovie.fromJson(response.data);
+  }
+
+  MovieDetailsResponse _parseMovieDetailsResponse(Response<dynamic> response) {
+    return MovieDetailsResponse.fromJson(response.data);
   }
 
   @override
@@ -57,6 +62,19 @@ class GithubRemoteDataSourceImpl extends BaseRemoteSource
     try {
       return callApiWithErrorParser(dioCall)
           .then((response) => _parseUpcomingMoviesResponse(response));
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<MovieDetailsResponse> getMovieDetails(int movieId) {
+    var endPoint = "${DioProvider.baseUrl}$movieId";
+    var dioCall = dioClient.get(endPoint);
+
+    try {
+      return callApiWithErrorParser(dioCall)
+          .then((response) => _parseMovieDetailsResponse(response));
     } catch (e) {
       rethrow;
     }

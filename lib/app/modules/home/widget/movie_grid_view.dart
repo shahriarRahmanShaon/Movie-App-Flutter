@@ -67,7 +67,7 @@ class MovieGridView extends StatelessWidget with BaseWidgetMixin {
   }
 
   void _onTap() {
-    Get.toNamed(Routes.PROJECT_DETAILS);
+    Get.toNamed(Routes.PROJECT_DETAILS, arguments: movieUiData.id);
   }
 
   String _getUrlFromData(posterPath) {
