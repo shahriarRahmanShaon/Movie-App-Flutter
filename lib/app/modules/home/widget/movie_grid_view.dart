@@ -1,7 +1,9 @@
+import 'package:get/get.dart';
 import 'package:movie_base/app/core/base/base_widget_mixin.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_base/app/core/values/app_values.dart';
-import 'package:movie_base/app/modules/home/model/home_ui_data.dart';
+
+import '../../../routes/app_pages.dart';
 
 class MovieGridView extends StatelessWidget with BaseWidgetMixin {
   dynamic movieUiData;
@@ -11,50 +13,61 @@ class MovieGridView extends StatelessWidget with BaseWidgetMixin {
   Widget body(BuildContext context) {
     return Stack(
       children: [
-        _buildMovieImage(AppValues.movieTileWeight, AppValues.movieTileHeight, titleOnBottom: movieUiData.originalTitle)
+        _buildMovieImage(
+            AppValues.movieTileWeight,
+            AppValues.movieTileHeight,
+            titleOnBottom: movieUiData.originalTitle
+        )
       ],
     );
   }
 
   Widget _buildMovieImage(double width, double height, {String? titleOnBottom}) {
-    return Column(
-      children: [
-        Container(
-          width: width,
-          height: height,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(AppValues.iconSize_14),
-          ),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(AppValues.iconSize_14),
-            child: Image.network(
-              _getUrlFromData(movieUiData.posterPath),
-              fit: BoxFit.fitWidth,
-            ),
-          ),
-        ),
-        if (titleOnBottom != null) ...[
-          SizedBox(
+    return GestureDetector(
+      onTap: _onTap,
+      child: Column(
+        children: [
+          Container(
             width: width,
-            child: Text(
-              titleOnBottom,
-              overflow: TextOverflow.ellipsis,
-              maxLines: 1,
-              style: const TextStyle(fontSize: 14),
+            height: height,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(AppValues.iconSize_14),
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(AppValues.iconSize_14),
+              child: Image.network(
+                _getUrlFromData(movieUiData.posterPath),
+                fit: BoxFit.fitWidth,
+              ),
             ),
           ),
-          SizedBox(
-            width: width,
-            child: Text(
-              movieUiData.releaseDate,
-              overflow: TextOverflow.ellipsis,
-              maxLines: 1,
-              style: const TextStyle(fontSize: AppValues.radius_12, color: Colors.grey),
+          if (titleOnBottom != null) ...[
+            SizedBox(
+              width: width,
+              child: Text(
+                titleOnBottom,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
+                style: const TextStyle(fontSize: 14),
+              ),
             ),
-          ),
+            SizedBox(
+              width: width,
+              child: Text(
+                movieUiData.releaseDate,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
+                style: const TextStyle(fontSize: AppValues.radius_12, color: Colors.grey),
+              ),
+            ),
+          ],
         ],
-      ],
+      ),
     );
+  }
+
+  void _onTap() {
+    Get.toNamed(Routes.PROJECT_DETAILS);
   }
 
   String _getUrlFromData(posterPath) {
