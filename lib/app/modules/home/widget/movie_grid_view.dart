@@ -1,5 +1,6 @@
 import 'package:movie_base/app/core/base/base_widget_mixin.dart';
 import 'package:flutter/material.dart';
+import 'package:movie_base/app/core/values/app_values.dart';
 import 'package:movie_base/app/modules/home/model/home_ui_data.dart';
 
 class MovieGridView extends StatelessWidget with BaseWidgetMixin {
@@ -10,7 +11,7 @@ class MovieGridView extends StatelessWidget with BaseWidgetMixin {
   Widget body(BuildContext context) {
     return Stack(
       children: [
-        _buildMovieImage(130, 200, titleOnBottom: movieUiData.originalTitle)
+        _buildMovieImage(AppValues.movieTileWeight, AppValues.movieTileHeight, titleOnBottom: movieUiData.originalTitle)
       ],
     );
   }
@@ -22,10 +23,10 @@ class MovieGridView extends StatelessWidget with BaseWidgetMixin {
           width: width,
           height: height,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(14),
+            borderRadius: BorderRadius.circular(AppValues.iconSize_14),
           ),
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(14),
+            borderRadius: BorderRadius.circular(AppValues.iconSize_14),
             child: Image.network(
               _getUrlFromData(movieUiData.posterPath),
               fit: BoxFit.fitWidth,
@@ -48,7 +49,7 @@ class MovieGridView extends StatelessWidget with BaseWidgetMixin {
               movieUiData.releaseDate,
               overflow: TextOverflow.ellipsis,
               maxLines: 1,
-              style: TextStyle(fontSize: 12, color: Colors.grey),
+              style: const TextStyle(fontSize: AppValues.radius_12, color: Colors.grey),
             ),
           ),
         ],

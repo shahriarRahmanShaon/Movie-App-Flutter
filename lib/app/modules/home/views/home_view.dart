@@ -41,7 +41,7 @@ class HomeView extends BaseView<HomeController> {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  for (var movie in controller.topMovieList.take(10))...[
+                  for (var movie in controller.topMovieList.take(AppValues.margin_10.toInt()))...[
                     MovieGridView(movieUiData: movie,key: key),
                     const SizedBox(width: 20),
                   ]
@@ -57,7 +57,7 @@ class HomeView extends BaseView<HomeController> {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  for (var movie in controller.upcomingMovieList.take(10))...[
+                  for (var movie in controller.upcomingMovieList.take(AppValues.margin_10.toInt()))...[
                     MovieGridView(movieUiData: movie,key: key),
                     const SizedBox(width: 20),
                   ]

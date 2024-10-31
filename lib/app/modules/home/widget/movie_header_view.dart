@@ -31,10 +31,10 @@ class MovieHeader extends StatelessWidget with BaseWidgetMixin {
       width: width,
       height: height / 4,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20)
+        borderRadius: BorderRadius.circular(AppValues.margin_20)
       ),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(AppValues.margin_20),
         child: Image.network(
           'https://yts.mx/assets/images/movies/good_one_2024/large-cover.jpg',
           fit: BoxFit.fill,
@@ -51,7 +51,7 @@ class MovieHeader extends StatelessWidget with BaseWidgetMixin {
       child: Container(
         padding: EdgeInsets.all(8),
         decoration: BoxDecoration(
-          color: Colors.black.withOpacity(0.7),
+          color: Colors.black.withOpacity(AppValues.opacity_70),
           borderRadius: BorderRadius.circular(8),
         ),
         child: const Row(
@@ -77,11 +77,11 @@ class MovieHeader extends StatelessWidget with BaseWidgetMixin {
       bottom: 0,
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.black.withOpacity(0.3),
-          borderRadius: BorderRadius.circular(20)
+          color: Colors.black.withOpacity(AppValues.opacity_30),
+          borderRadius: BorderRadius.circular(AppValues.margin_20)
         ),
-        width: width-32,
-        height: height / 10,
+        width: width-AppValues.extraLargePadding,
+        height: height / AppValues.defaultPageSize,
         padding: const EdgeInsets.all(AppValues.padding),
         child: const Column(
           crossAxisAlignment: CrossAxisAlignment.start,
