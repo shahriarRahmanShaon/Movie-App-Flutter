@@ -23,11 +23,53 @@ class MovieDetailsController extends BaseController {
 
   void _handleMovieDetailsResponseSuccess(MovieDetailsResponse response) {
     _detailsUiData(MovieDetailsUiData(
-      posterPath: response.posterPath != null ? response.posterPath! : "",
-      imdbId: response.imdbId != null ? response.imdbId! : "",
-      backdropPath: response.backdropPath != null ? response.backdropPath! : "null"
+      backdropPath: response.backdropPath ?? "",
+      belongsToCollection: response.belongsToCollection != null ? response.belongsToCollection.toString() : "",
+      budget: response.budget ?? 0,
+      genres: response.genres != null
+          ? response.genres!.map((genre) => GenresUiData(id: genre.id ?? 0, name: genre.name ?? "")).toList()
+          : [],
+      homepage: response.homepage ?? "",
+      id: response.id ?? 0,
+      imdbId: response.imdbId ?? "",
+      originCountry: response.originCountry ?? [],
+      originalLanguage: response.originalLanguage ?? "",
+      originalTitle: response.originalTitle ?? "",
+      overview: response.overview ?? "",
+      popularity: response.popularity ?? 0.0,
+      posterPath: response.posterPath ?? "",
+      productionCompanies: response.productionCompanies != null
+          ? response.productionCompanies!.map((company) => ProductionCompaniesUiData(
+        id: company.id ?? 0,
+        logoPath: company.logoPath ?? "",
+        name: company.name ?? "",
+        originCountry: company.originCountry ?? "",
+      )).toList()
+          : [],
+      productionCountries: response.productionCountries != null
+          ? response.productionCountries!.map((country) => ProductionCountriesUiData(
+        iso31661: country.iso31661 ?? "",
+        name: country.name ?? "",
+      )).toList()
+          : [],
+      releaseDate: response.releaseDate ?? "",
+      revenue: response.revenue ?? 0,
+      runtime: response.runtime ?? 0,
+      spokenLanguages: response.spokenLanguages != null
+          ? response.spokenLanguages!.map((language) => SpokenLanguagesUiData(
+        englishName: language.englishName ?? "",
+        iso6391: language.iso6391 ?? "",
+        name: language.name ?? "",
+      )).toList()
+          : [],
+      status: response.status ?? "",
+      tagline: response.tagline ?? "",
+      title: response.title ?? "",
+      video: response.video ?? false,
+      voteAverage: response.voteAverage ?? 0.0,
+      voteCount: response.voteCount ?? 0,
     ));
-
   }
+
 
 }
