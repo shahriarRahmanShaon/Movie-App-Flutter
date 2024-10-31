@@ -11,6 +11,7 @@ class HomeView extends BaseView<HomeController> {
 
   HomeView() {
     controller.getTopPickMovieList();
+    controller.getUpcomingMovieList();
   }
 
   @override
@@ -49,19 +50,17 @@ class HomeView extends BaseView<HomeController> {
             ),
             const SizedBox(height: 20),
             const Padding(
-              padding: const EdgeInsets.only(bottom: 8.0),
-              child: const Text('Upcoming Movies', style: centerTextStyle),
+              padding:  EdgeInsets.only(bottom: 8.0),
+              child:  Text('Upcoming Movies', style: centerTextStyle),
             ),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  Text("fefefe")
-                  // MovieGridView(),
-                  // const SizedBox(width: 15),
-                  // MovieGridView(),
-                  // const SizedBox(width: 15),
-                  // MovieGridView(movieUiData: m,),
+                  for (var movie in controller.upcomingMovieList.take(10))...[
+                    MovieGridView(movieUiData: movie,key: key),
+                    const SizedBox(width: 20),
+                  ]
                 ],
               ),
             ),

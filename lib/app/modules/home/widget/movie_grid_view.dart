@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:movie_base/app/modules/home/model/home_ui_data.dart';
 
 class MovieGridView extends StatelessWidget with BaseWidgetMixin {
-  TopMovieUiData movieUiData;
+  dynamic movieUiData;
   MovieGridView({Key? key, required this.movieUiData}) : super(key: key);
 
   @override

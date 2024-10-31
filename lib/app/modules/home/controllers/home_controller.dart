@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:movie_base/app/data/model/top_rated_movie_response.dart';
+import 'package:movie_base/app/data/model/upcoming_movie_response.dart';
 import '/app/core/base/base_controller.dart';
 import '/app/data/model/all_movie_response.dart';
 import '/app/data/repository/movie_repository.dart';
@@ -12,6 +13,8 @@ class HomeController extends BaseController {
   List<AllMovieUiData> get projectList => _allMovieListController.toList();
   final RxList<TopMovieUiData> _topMovieListController = RxList.empty();
   List<TopMovieUiData> get topMovieList => _topMovieListController.toList();
+  final RxList<UpcomingMovieUiData> _upcomingMovieListController = RxList.empty();
+  List<UpcomingMovieUiData> get upcomingMovieList => _upcomingMovieListController.toList();
 
   void getAllMovieList() {
     var movieService = _repository.getMovies();
@@ -27,6 +30,31 @@ class HomeController extends BaseController {
       topPickMovieService,
       onSuccess: _handleTopMovieListResponseSuccess,
     );
+  }
+
+  void getUpcomingMovieList() {
+    var upcomingMovieService = _repository.getUpcomingMovies();
+    callDataService(
+      upcomingMovieService,
+      onSuccess: _handleUpcomingMovieListResponseSuccess,
+    );
+  }
+
+  void _handleUpcomingMovieListResponseSuccess(UpcomingMovie response) {
+    List<UpcomingMovieUiData>? movieList = response.results?.map((e) => UpcomingMovieUiData(
+      id: e.id ?? 0,
+      originalTitle: e.originalTitle ?? "Null",
+      posterPath: e.posterPath ?? "Null",
+      releaseDate: e.releaseDate ?? "Unknown",
+      popularity: e.popularity ?? 0.0,
+      overview: e.overview ?? "No overview available",
+      backdropPath: e.backdropPath ?? "Null",
+      originalLanguage: e.originalLanguage ?? "Unknown",
+      title: e.title ?? "Untitled",
+    )).toList();
+    var list = [...movieList!];
+    _upcomingMovieListController(list);
+
   }
 
   void _handleTopMovieListResponseSuccess(TopPickMovie response) {

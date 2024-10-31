@@ -78,4 +78,28 @@ class TopMovieUiData {
   });
 }
 
+class UpcomingMovieUiData {
+  int id;
+  String originalTitle;
+  String posterPath;
+  String releaseDate;
+  double popularity;
+  String overview;
+  String backdropPath;
+  String originalLanguage;
+  String title;
+
+  UpcomingMovieUiData({
+    this.id = 0,
+    this.originalTitle = "Null",
+    this.posterPath = "NUll",
+    this.releaseDate = "Null",
+    this.popularity = 5.0,
+    this.overview = "Null",
+    this.backdropPath = "Null",
+    this.originalLanguage = "Null",
+    this.title = "Null",
+  });
+}
+
 
