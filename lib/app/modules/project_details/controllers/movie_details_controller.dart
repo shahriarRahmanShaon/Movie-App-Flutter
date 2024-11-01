@@ -34,7 +34,6 @@ class MovieDetailsController extends BaseController {
       movieDetailsService,
       onSuccess: _handleAddToFavouriteResponseSuccess,
     );
-
   }
 
   void _handleAddToFavouriteResponseSuccess(FavoriteResponse response) {
@@ -90,6 +89,5 @@ class MovieDetailsController extends BaseController {
       voteCount: response.voteCount ?? 0,
     ));
   }
-
 
 }

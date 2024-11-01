@@ -1,7 +1,9 @@
 import 'package:dio/dio.dart';
+import 'package:movie_base/app/core/model/movie_search_query_param.dart';
 import 'package:movie_base/app/data/model/add_to_favourite_response.dart';
 import 'package:movie_base/app/data/model/fav_movie_list_response.dart';
 import 'package:movie_base/app/data/model/movie_details_response.dart';
+import 'package:movie_base/app/data/model/search_movie_response.dart';
 import 'package:movie_base/app/data/model/top_rated_movie_response.dart';
 import 'package:movie_base/app/data/model/upcoming_movie_response.dart';
 import '/app/core/base/base_remote_source.dart';
@@ -36,6 +38,10 @@ class GithubRemoteDataSourceImpl extends BaseRemoteSource
 
   FavMovieResponse _parseAllFavMovie(Response<dynamic> response) {
     return FavMovieResponse.fromJson(response.data);
+  }
+
+  MovieSearchResponse _parseSearchedMovie(Response<dynamic> response) {
+    return MovieSearchResponse.fromJson(response.data);
   }
 
   @override
@@ -111,6 +117,19 @@ class GithubRemoteDataSourceImpl extends BaseRemoteSource
     try {
       return callApiWithErrorParser(dioCall)
           .then((response) => _parseAllFavMovie(response));
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<MovieSearchResponse> getSearchMovie(MovieSearchQueryParam queryParam) {
+    var endpoint = "https://api.themoviedb.org/3/search/movie";
+    var dioCall = dioClient.get(endpoint, queryParameters: queryParam.toJson());
+
+    try {
+      return callApiWithErrorParser(dioCall)
+          .then((response) => _parseSearchedMovie(response));
     } catch (e) {
       rethrow;
     }
