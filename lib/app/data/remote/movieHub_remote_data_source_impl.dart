@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:movie_base/app/data/model/add_to_favourite_response.dart';
+import 'package:movie_base/app/data/model/fav_movie_list_response.dart';
 import 'package:movie_base/app/data/model/movie_details_response.dart';
 import 'package:movie_base/app/data/model/top_rated_movie_response.dart';
 import 'package:movie_base/app/data/model/upcoming_movie_response.dart';
@@ -31,6 +32,10 @@ class GithubRemoteDataSourceImpl extends BaseRemoteSource
 
   FavoriteResponse _parseFavouriteMovie(Response<dynamic> response) {
     return FavoriteResponse.fromJson(response.data);
+  }
+
+  FavMovieResponse _parseAllFavMovie(Response<dynamic> response) {
+    return FavMovieResponse.fromJson(response.data);
   }
 
   @override
@@ -93,6 +98,19 @@ class GithubRemoteDataSourceImpl extends BaseRemoteSource
     try {
       return callApiWithErrorParser(dioCall)
           .then((response) => _parseFavouriteMovie(response));
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<FavMovieResponse> getFavMovies() {
+    var endpoint = "https://api.themoviedb.org/3/account/12666036/favorite/movies";
+    var dioCall = dioClient.get(endpoint);
+
+    try {
+      return callApiWithErrorParser(dioCall)
+          .then((response) => _parseAllFavMovie(response));
     } catch (e) {
       rethrow;
     }
