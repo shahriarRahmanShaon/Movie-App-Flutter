@@ -93,14 +93,14 @@ class ProjectDetailsView extends BaseView<MovieDetailsController> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        const Text(
           'Overview',
           style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         Text(
           controller.movieDetailsUiData.overview,
-          style: TextStyle(fontSize: 16),
+          style: const TextStyle(fontSize: 16),
         ),
       ],
     );
@@ -132,10 +132,10 @@ class ProjectDetailsView extends BaseView<MovieDetailsController> {
           'Release Date:',
           style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
-        SizedBox(width: 8),
+        const SizedBox(width: 8),
         Text(
           controller.movieDetailsUiData.releaseDate,
-          style: TextStyle(fontSize: 16),
+          style: const TextStyle(fontSize: 16),
         ),
       ],
     );
@@ -201,7 +201,7 @@ class ProjectDetailsView extends BaseView<MovieDetailsController> {
       height: 40,
       child: ElevatedButton(
         onPressed: () {
-          // Action for adding to watchlist can be defined here
+          _handleAddToFavourite();
         },
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.appBarColor,
@@ -210,12 +210,41 @@ class ProjectDetailsView extends BaseView<MovieDetailsController> {
           ),
         ),
         child: const Text(
-          "Add to WatchList",
+          "Add to Favourite",
           style: TextStyle(fontSize: 16, color: Colors.white),
         ),
       ),
     );
   }
+
+  void _handleAddToFavourite() async {
+    controller.addToFavourite(isFavourite: true);
+    Future.delayed(Duration(milliseconds: 1500), () {
+      if (controller.addToFavSuccessOrNot) {
+        _showSuccessDialog();
+      }
+    });
+  }
+
+  void _showSuccessDialog() {
+    showDialog(
+      context: Get.context!,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Success"),
+          content: const Text(
+              "Successfully added to the Favourite. Check your Favourite on the Favourite tab."),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text("OK", style: TextStyle(color: AppColors.appBarColor),),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
 
   String _getUrlFromData(String posterPath) {
     return "https://image.tmdb.org/t/p/w500$posterPath";

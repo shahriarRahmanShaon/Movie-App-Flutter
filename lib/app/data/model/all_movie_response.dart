@@ -9,7 +9,7 @@ class AllMoviesResponse {
   AllMoviesResponse.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     statusMessage = json['status_message'];
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+    data = json['data'] != null ? Data.fromJson(json['data']) : null;
   }
 }
 
@@ -28,7 +28,7 @@ class Data {
     if (json['movies'] != null) {
       movies = <Movies>[];
       json['movies'].forEach((v) {
-        movies!.add(new Movies.fromJson(v));
+        movies!.add( Movies.fromJson(v));
       });
     }
   }

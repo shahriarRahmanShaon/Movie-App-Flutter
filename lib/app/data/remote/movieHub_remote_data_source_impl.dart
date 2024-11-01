@@ -1,9 +1,10 @@
 import 'package:dio/dio.dart';
+import 'package:movie_base/app/data/model/add_to_favourite_response.dart';
 import 'package:movie_base/app/data/model/movie_details_response.dart';
 import 'package:movie_base/app/data/model/top_rated_movie_response.dart';
 import 'package:movie_base/app/data/model/upcoming_movie_response.dart';
 import '/app/core/base/base_remote_source.dart';
-import '/app/core/model/movie_details_query_param.dart';
+import '/app/core/model/add_to_favourite_query_param.dart';
 import '/app/data/model/all_movie_response.dart';
 import '/app/data/remote/moviehub_remote_data_source.dart';
 import '/app/network/dio_provider.dart';
@@ -26,6 +27,10 @@ class GithubRemoteDataSourceImpl extends BaseRemoteSource
 
   MovieDetailsResponse _parseMovieDetailsResponse(Response<dynamic> response) {
     return MovieDetailsResponse.fromJson(response.data);
+  }
+
+  FavoriteResponse _parseFavouriteMovie(Response<dynamic> response) {
+    return FavoriteResponse.fromJson(response.data);
   }
 
   @override
@@ -75,6 +80,19 @@ class GithubRemoteDataSourceImpl extends BaseRemoteSource
     try {
       return callApiWithErrorParser(dioCall)
           .then((response) => _parseMovieDetailsResponse(response));
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<FavoriteResponse> addToFavourite(AddToFavouriteQueryParam queryParam) {
+    var endpoint = "https://api.themoviedb.org/3/account/12666036/favorite";
+    var dioCall = dioClient.post(endpoint, queryParameters: queryParam.toJson());
+
+    try {
+      return callApiWithErrorParser(dioCall)
+          .then((response) => _parseFavouriteMovie(response));
     } catch (e) {
       rethrow;
     }

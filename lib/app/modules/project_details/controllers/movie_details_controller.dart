@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:movie_base/app/core/model/add_to_favourite_query_param.dart';
+import 'package:movie_base/app/data/model/add_to_favourite_response.dart';
 import 'package:movie_base/app/data/model/movie_details_response.dart';
 import 'package:movie_base/app/modules/project_details/model/movie_detail_ui_data.dart';
 
@@ -11,6 +13,8 @@ class MovieDetailsController extends BaseController {
   final MovieRepository _repository = Get.find(tag: (MovieRepository).toString());
   final Rx<MovieDetailsUiData> _detailsUiData = MovieDetailsUiData().obs;
   MovieDetailsUiData get movieDetailsUiData => _detailsUiData.value;
+  final RxBool _addToFavResponse = RxBool(false);
+  bool get addToFavSuccessOrNot => _addToFavResponse.value;
 
   void getMovieDetails() {
     int id = Get.arguments;
@@ -19,6 +23,22 @@ class MovieDetailsController extends BaseController {
       detailsMovieService,
       onSuccess: _handleMovieDetailsResponseSuccess,
     );
+  }
+
+  void addToFavourite({bool isFavourite = false}) {
+    int id = Get.arguments;
+    var queryParam = AddToFavouriteQueryParam(mediaId: id.toString(), favorite: isFavourite);
+
+    var movieDetailsService = _repository.addToFavourite(queryParam);
+    callDataService(
+      movieDetailsService,
+      onSuccess: _handleAddToFavouriteResponseSuccess,
+    );
+
+  }
+
+  void _handleAddToFavouriteResponseSuccess(FavoriteResponse response) {
+    _addToFavResponse(response.success);
   }
 
   void _handleMovieDetailsResponseSuccess(MovieDetailsResponse response) {
