@@ -6,5 +6,8 @@
   "titleOtherView": "অন্যান্য",
   "settingsTheme": "থিম",
   "settingsLanguage": "ভাষা",
-  "settingsFontSize": "অক্ষরের আকার"
+  "settingsFontSize": "অক্ষরের আকার",
+  "welcomeHomeText" : "স্বাগতম",
+  "topMoviePicks" : "শীর্ষ মুভি বাছাই",
+  "upcomingMovies" : "আসন্ন সিনেমা"
 }

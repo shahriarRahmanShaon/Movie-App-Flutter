@@ -6,5 +6,8 @@
   "titleOtherView": "OtherView",
   "settingsTheme": "Theme",
   "settingsLanguage": "Language",
-  "settingsFontSize": "Font Size"
+  "settingsFontSize": "Font Size",
+  "welcomeHomeText" : "Welcome Back",
+  "topMoviePicks" : "Top Movie Picks",
+  "upcomingMovies" : "Upcoming Movies"
 }

@@ -28,14 +28,14 @@ class HomeView extends BaseView<HomeController> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('Welcome Back', style: primaryColorSubtitleStyle),
+            Text(appLocalization.welcomeHomeText, style: primaryColorSubtitleStyle),
             const Text('Shahriar Rahman Shaon', style: centerTextStyle),
             const SizedBox(height: 20),
             MovieHeader(),
             const SizedBox(height: 20),
-            const Padding(
-              padding: EdgeInsets.only(bottom: 8.0),
-              child: Text('Top Movie Picks', style: centerTextStyle),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 8.0),
+              child: Text(appLocalization.topMoviePicks, style: centerTextStyle),
             ),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
@@ -49,9 +49,9 @@ class HomeView extends BaseView<HomeController> {
               ),
             ),
             const SizedBox(height: 20),
-            const Padding(
-              padding:  EdgeInsets.only(bottom: 8.0),
-              child:  Text('Upcoming Movies', style: centerTextStyle),
+            Padding(
+              padding:  const EdgeInsets.only(bottom: 8.0),
+              child:  Text(appLocalization.upcomingMovies, style: centerTextStyle),
             ),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
